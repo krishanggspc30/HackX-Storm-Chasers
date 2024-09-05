@@ -1,140 +1,41 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GarbageChasers</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="output.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geolocation Sender</title>
+  <!-- Include Axios library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a href="#" class="logo">
-                <img src="images/garbagebin.jpg" alt="logo">
-                <h2>GarbageChasers</h2>
-            </a>
-            <ul class="links">
-                <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                
-            </ul>
-            <button class="login-btn">LOG IN</button>
-        </nav>
-    </header>
+  <button id="sendLocationButton">Send Geolocation</button>
 
+  <script>
+    document.getElementById('sendLocationButton').addEventListener('click', () => {
+      // Check if the Geolocation API is supported
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
 
-    <!-- hero section -->
-
-    <div class="clip">
-            
-        <div class="imgSlider">
-            
-        </div>
-        
-        <div class="text-container">
-            
-          <p></p> 
-        
-    </div>
-
-    <!-- <div class="box-container grid grid-cols-1 xl:grid-cols-2 gap-9 px-5 py-6 border border-8" id="box-container">
-        <a href="man_track.html"><div class="box1 w-32 h-24 bg-gray-300 rounded-xl">
-             
-            
-            </div></a>
-        
-        <a href="complaint.html"><div class="box2 w-32 h-24 bg-gray-300 rounded-xl" >
-            
-           
-            </div>  </a>
-    </div> -->
-
-
-
-    <div>
-        <div class="flex justify-center items-center h-screen">
-            <button onclick="redirectToSite1()" class="inline-block  w-[470px] h-[470px] bg-cover bg-center text-white text-lg font-semibold rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-700 mx-2" style="background-image: url('images/gps.jpg')"></button>
-        </div>
-        <div>
-            <!-- <button onclick="redirectToSite2()" class="inline-block  w-[470px] h-[470px] bg-cover bg-center text-white text-lg font-semibold rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-700 mx-2" style="background-image: url('images/complaint2.jpg')"></button> -->
-        </div>
-    </div>
-    <script>
-        function redirectToSite1() {
-            window.location.href = "man_track.html";
-        }
-        function redirectToSite2() {
-            window.location.href = "complaint.html";
-        }
-    </script>
-
-
-
-    <div class="blur-bg-overlay">
-    <div class="form-popup">
-        <span class="close-btn material-symbols-rounded">close</span>
-        <div class="form-box login">
-            <div class="form-details">
-                <h2></h2>
-                <p></p>
-            </div>
-            <div class="form-content">
-                <h2>LOGIN</h2>
-                <form action="#">
-                    <div class="input-field">
-                        <input type="text" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" required>
-                        <label>Password</label>
-                    </div>
-                    <a href="#" class="forgot-pass-link"></a>
-                    <button type="submit">Log In</button>
-                </form>
-                <div class="bottom-link">
-                    
-                    <a href="#" id="signup-link"></a>
-                </div>
-            </div>
-        </div>
-        <div class="form-box signup">
-            <div class="form-details">
-                <h2>Create Account</h2>
-                <p>To become a part of our community, please sign up using your personal information.</p>
-            </div>
-            <div class="form-content">
-                <h2>SIGNUP</h2>
-                <form action="#">
-                    <div class="input-field">
-                        <input type="text" required>
-                        <label>Enter your email</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" required>
-                        <label>Create password</label>
-                    </div>
-                    <div class="policy-text">
-                        <input type="checkbox" id="policy">
-                        <label for="policy">
-                            I agree the
-                            <a href="#" class="option">Terms & Conditions</a>
-                        </label>
-                    </div>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <div class="bottom-link">
-                    Already have an account? 
-                    <a href="#" id="login-link">Login</a>
-                </div>
-            </div>
-        </div>
-    </div>
+          // Send geolocation data to the backend using Axios
+          axios.post('http://localhost:3000/api/geolocation', {
+            latitude: latitude,
+            longitude: longitude
+          })
+          .then(response => {
+            console.log(response.data.message);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        }, error => {
+          console.error('Error getting location:', error);
+        });
+      } else {
+        console.log('Geolocation is not supported by this browser.');
+      }
+    });
+  </script>
 </body>
 </html>
