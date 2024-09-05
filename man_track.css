@@ -1,0 +1,114 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color:#fffff;
+  
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2{
+  text-align: center;
+ 
+  
+  margin-bottom: 80px;
+}
+
+.tracking-system {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+}
+
+.track-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Spreads out the items more */
+  width: 100%; /* Ensures the row takes up more width */
+  margin-bottom: 60px;
+}
+
+.track-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px; /* Adds extra space between regions */
+}
+
+.checkbox-container p {
+  margin-top: 20px;
+  font-size: 18px;
+  color:antiquewhite;
+}
+
+.checkbox-container .blank-div {
+  width: 120px;
+  height: 60px;
+  background-color: #eaeaea;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.round-checkbox {
+  display: block;
+  position: relative;
+  margin: 0 15px;
+}
+
+.round-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: #ccc;
+  border-radius: 50%;
+  border: 5px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.round-checkbox input:checked ~ .checkmark {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.round-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.round-checkbox .checkmark:after {
+  left: 30px;
+  top: 25px;
+  width: 25px;
+  height: 50px;
+  border: solid white;
+  border-width: 0 6px 6px 0;
+  transform: rotate(45deg);
+}
+
+.line {
+  width: 80px;
+  height: 6px;
+  background-color: #333;
+  display: block;
+}
