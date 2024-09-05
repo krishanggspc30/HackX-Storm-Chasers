@@ -9,6 +9,36 @@
 </head>
 <body>
   <button id="sendLocationButton">Send Geolocation</button>
+  <link rel="stylesheet" href="style.css">
+  <h3>Select a Region</h3>
+  <div class="region-selector">
+    <select id="region-dropdown" onchange="showCard()">
+      <option value="" disabled selected>Select Region</option>
+      <option value="North Region">North Region</option>
+      <option value="South Region">South Region</option>
+      <option value="East Region">East Region</option>
+      <option value="West Region">West Region</option>
+      <option value="Central Region">Central Region</option>
+      <option value="North-East Region">North-East Region</option>
+      <option value="North-West Region">North-West Region</option>
+      <option value="South-East Region">South-East Region</option>
+      <option value="South-West Region">South-West Region</option>
+      <option value="Mountain Region">Mountain Region</option>
+    </select>
+  </div>
+
+  <div id="action-card" class="card hidden">
+    <h4 id="region-title"></h4>
+    <form id="action-form" onsubmit="submitForm(event)">
+      <label for="image-upload">Upload Image:</label>
+      <input type="file" id="image-upload" accept="image/*" required><br><br>
+
+      <label for="time">Enter Time of Action:</label>
+      <input type="time" id="time" required><br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
   <script>
     document.getElementById('sendLocationButton').addEventListener('click', () => {
